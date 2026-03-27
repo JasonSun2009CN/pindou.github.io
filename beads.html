@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>拼豆服务</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#fffafc;padding:20px}
+.container{max-width:800px;margin:0 auto}
+.title{text-align:center;font-size:26px;margin:30px 0;color:#c96f86}
+.back{text-align:center;margin-bottom:20px}
+.back a{color:#999;text-decoration:none}
+
+/* 顶部大图展示区 */
+.banner {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 10px #00000010;
+}
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 成品小图网格 */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:16px;margin-bottom:40px
+}
+.item{border-radius:12px;overflow:hidden;cursor:pointer;box-shadow:0 2px 6px #0000000d}
+.item img{width:100%;height:180px;object-fit:cover}
+.item:hover{transform:scale(1.02);transition:.2s}
+
+.btn-custom{
+  display:block;width:220px;margin:0 auto;
+  background:#e989a1;color:#fff;
+  border:none;border-radius:12px;
+  padding:14px 0;font-size:16px;font-weight:bold;
+  cursor:pointer
+}
+
+.modal{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,.4);display:grid;place-items:center;
+  z-index:999;display:none
+}
+.modal-box{
+  background:#fff;border-radius:16px;padding:24px;
+  max-width:320px;width:90%;text-align:center
+}
+.modal-box img{width:160px;height:160px;margin:10px auto;border-radius:8px}
+.modal-box p{margin:8px 0;font-size:15px}
+.modal-box .price{font-size:20px;font-weight:bold;color:#e15a7b}
+.modal-box .stock{color:#555}
+.close{
+  margin-top:16px;padding:8px 16px;
+  background:#eee;border:none;border-radius:8px;cursor:pointer
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <div class="back"><a href="../index.HTML">← 返回主页</a></div>
+  <h1 class="title">拼豆成品 & 代拼服务</h1>
+
+  <!-- ====================== -->
+  <!--  ✅ 新增：顶部大图展示区  -->
+  <!-- ====================== -->
+  <div class="banner">
+    <img src="pd1_show.jpg" alt="拼豆合集展示">
+  </div>
+
+  <!-- 可点击商品区 -->
+  <div class="gallery">
+    <div class="item" onclick="showInfo(1)">
+      <img src="pd2.jpg" alt="拼豆1">
+    </div>
+    <div class="item" onclick="showInfo(2)">
+      <img src="pd3.jpg" alt="拼豆2">
+    </div>
+  </div>
+
+  <button class="btn-custom" onclick="showDaiPin()">代拼定制服务</button>
+</div>
+
+<!-- 成品信息弹窗 -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <img id="qrcode" src="wxid.jpg">
+    <p id="name"></p>
+    <p class="price" id="price"></p>
+    <p class="stock" id="stock"></p>
+    <p>联系电话：<span id="tel">15919456238</span></p>
+    <button class="close" onclick="closeModal()">关闭</button>
+  </div>
+</div>
+
+<!-- 代拼弹窗 -->
+<div class="modal" id="modalDaiPin">
+  <div class="modal-box">
+    <img src="wxid.jpg">
+    <p>代拼定制请联系</p>
+    <p>微信：wxid_ungy1j9b2e9h12</p>
+    <p>电话：15919456238</p>
+    <button class="close" onclick="closeDaiPin()">关闭</button>
+  </div>
+</div>
+
+<script>
+const data = [
+  {},
+  {name:"小猫挂件",price:"39元",stock:"库存：6件",tel:"15919456238"},
+  {name:"小熊摆件",price:"45元",stock:"库存：3件",tel:"15919456238"}
+]
+
+function showInfo(i){
+  const o = data[i]
+  document.getElementById("name").innerText = o.name
+  document.getElementById("price").innerText = o.price
+  document.getElementById("stock").innerText = o.stock
+  document.getElementById("tel").innerText = o.tel
+  document.getElementById("modal").style.display = "grid"
+}
+function closeModal(){
+  document.getElementById("modal").style.display = "none"
+}
+
+function showDaiPin(){
+  document.getElementById("modalDaiPin").style.display = "grid"
+}
+function closeDaiPin(){
+  document.getElementById("modalDaiPin").style.display = "none"
+}
+</script>
+</body>
+</html>
